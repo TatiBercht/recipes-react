@@ -9,11 +9,14 @@
   },
   "devDependencies": {
     "babel-core": "6.24.0",
+    "babel-jest": "^20.0.3",
     "babel-loader": "6.4.1",
     "babel-preset-env": "1.3.2",
     "babel-preset-react": "6.23.0",
     "babel-preset-stage-0": "6.22.0",
     "css-loader": "0.27.3",
+    "deepfreeze": "^2.0.0",
+    "jest": "20.0.4",
     "postcss-loader": "1.3.3",
     "style-loader": "0.14.1",
     "webpack": "2.2.1"
@@ -21,7 +24,33 @@
   "scripts": {
     "build": "webpack --progress",
     "prestart": "npm run build",
-    "start": "open dist/index.html"
+    "start": "open dist/index.html",
+    "test": "jest"
+  },
+  "jest": {
+    "setupFiles": [
+      "./__tests__/globals.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "global.js"
+    ],
+    "verbose": true,
+    "collectCoverage": true,
+    "notify": true,
+    "collectCoverageFrom": [
+      "src/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    },
+    "moduleNameMapper": {
+      "\\.(scss)$": "<rootDir>/node_modules/jest-css-modules"
+    }
   },
   "author": "Tatiana Bercht",
   "license": "ISC"
